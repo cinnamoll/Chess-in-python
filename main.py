@@ -25,6 +25,9 @@ def main():
     sqSelected = ()
     playerClick = []
 
+    validMoves = state.getValidMoves()
+    moveMade = False
+
     while running:
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
@@ -33,6 +36,8 @@ def main():
                 location = pygame.mouse.get_pos()
                 col = location[0] // SQR_SIZE
                 row = location[1] // SQR_SIZE 
+
+                print(state.check())
 
                 if sqSelected == (row, col):
                     sqSelected = ()
@@ -44,10 +49,20 @@ def main():
                 if len(playerClick) == 2:
                     move = engine.Move(playerClick[0], playerClick[1], state.board)
                     print(move.getChessNotation())
-                    state.makeMove(move)
+                    if move in validMoves:    
+                        state.makeMove(move)
+                        moveMade = True
                     sqSelected = ()
                     playerClick = []
+            elif e.type == pygame.KEYDOWN:
+                if e.key == pygame.K_z:
+                    state.undoMove()
+                    moveMade = True
 
+        if moveMade == True:
+            validMoves = state.getValidMoves()
+            moveMade = False 
+        
         drawState(screen, state)
         clock.tick(MAX_FPS)
         pygame.display.flip()
