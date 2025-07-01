@@ -37,8 +37,6 @@ def main():
                 col = location[0] // SQR_SIZE
                 row = location[1] // SQR_SIZE 
 
-                print(state.check())
-
                 if sqSelected == (row, col):
                     sqSelected = ()
                     playerClick = []
@@ -49,6 +47,7 @@ def main():
                 if len(playerClick) == 2:
                     move = engine.Move(playerClick[0], playerClick[1], state.board)
                     print(move.getChessNotation())
+                    
                     if move in validMoves:    
                         state.makeMove(move)
                         moveMade = True
