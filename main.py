@@ -1,5 +1,6 @@
 import pygame
-import engine
+import Engine
+import CalcMove
 
 pygame.init()
 
@@ -18,7 +19,7 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     clock = pygame.time.Clock()
 
-    state = engine.GameState()
+    state = Engine.GameState()
     loadImg()
 
     running = True
@@ -45,7 +46,7 @@ def main():
                     playerClick.append(sqSelected)
                 
                 if len(playerClick) == 2:
-                    move = engine.Move(playerClick[0], playerClick[1], state.board)
+                    move = CalcMove.Move(playerClick[0], playerClick[1], state.board)
                     print(move.getChessNotation())
                     
                     if move in validMoves:    
