@@ -1,7 +1,5 @@
 import CalcMove
 
-whiteToPlay = True
-
 def getPawnMoves(r, c, moves, whiteToPlay, board):
     if whiteToPlay:
         if board[r-1][c] == '--':
@@ -59,7 +57,9 @@ def getRookMoves(r, c, moves, whiteToPlay, board):
     helperFunc(r, c, moves, whiteToPlay, board, directions)
 
 def getKnightMoves(r, c, moves, whiteToPlay, board):
-    pass
+    directions = [(2, 1), (2, -1), (-2, 1), (-2, -1), 
+                  (1, 2), (1, -2), (-1, 2), (-1, -2)]
+    helperFunc(r, c, moves, whiteToPlay, board, directions)
 
 def getBishopMoves(r, c, moves, whiteToPlay, board):
     directions = [(1, 1), (1, -1), (-1, 1), (-1, -1)]
@@ -70,4 +70,6 @@ def getQueenMoves(r, c, moves, whiteToPlay, board):
     getBishopMoves(r, c, moves, whiteToPlay, board)
 
 def getKingMoves(r, c, moves, whiteToPlay, board):
-    pass
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1), 
+                  (1, 1), (1, -1), (-1, 1), (-1, -1)]
+    helperFunc(r, c, moves, whiteToPlay, board, directions)

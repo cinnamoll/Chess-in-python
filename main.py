@@ -52,8 +52,10 @@ def main():
                     if move in validMoves:    
                         state.makeMove(move)
                         moveMade = True
-                    sqSelected = ()
-                    playerClick = []
+                        sqSelected = ()
+                        playerClick = []
+                    else:
+                        playerClick = [sqSelected]
             elif e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_z:
                     state.undoMove()
